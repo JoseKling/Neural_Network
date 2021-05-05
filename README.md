@@ -1,5 +1,6 @@
 ## Neural_Network
-This is an implementation of a Neural Network in Python using only numpy.  
+This is an implementation of a Neural Network in Python using only numpy. 
+Unfortunately, the convolutionanl layers are too slow to be used for now. In a future version I will try to eliminate the for loops in the forwards and backwards methods, but it is still a good way of learning the theory of gow it is done.  
 The classes are the following:
 
 #NeuralNet 
