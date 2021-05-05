@@ -1,9 +1,11 @@
 ## Neural_Network
 This is an implementation of a Neural Network in Python using only numpy.  
-There are 2 classes: NeuralNet and Layer. 
+The classes are the following:
 
-NeuralNet is where the whole model will be stored. It must be initialized with the number of inputs and outputs of the model and the desired cost function (for now there is only one). Its methods:
-* add_layer - Adds a hidden layer or the output layer. 
+#NeuralNet 
+Where the whole model will be stored. It must be initialized with the number of inputs and outputs of the model and the desired cost function (for now there is only one). Its methods:
+* add_FC_layer - Adds a Fully Connected layer to the hidden layers.
+* add_Conv_layer - Adds a Convolutional layer to the hidden layers. 
 * train - Train the model using a dataset.
 * backpropagation - Makes a forward pass and propagates back the gradient to update the weights during training.
 * forward_pass - Makes a forward pass with the given weights and inputs.
@@ -13,11 +15,20 @@ NeuralNet is where the whole model will be stored. It must be initialized with t
 * score - Gets the percentage of correct predictions for a dataset
 * squared_loss - The cost function implemented.
 
-The class Layer creates a layer with desired number of nodes and activation function (ReLU, Leaky ReLU, tanh, sigmoid or softmax). Methods:
-* forwards - A forward pass through this layer with given inputs. Must also store values needed for the backpropagation.
-* backwards - Calculates the gradients for the nodes and the weights given some input gradients from the previous layer.
-* relu
-* leaky_relu
-* sigmoid
-* tanh
-* softmax
+#HiddenLayer
+Used as a superclass. Both FCLayer and ConvLayer classes inherit the activation functions from it.
+* relu - The ReLU activation function.
+* leaky_relu - The Leaky ReLU activation function.
+* sigmoid - The Sigmoid activation function.
+* tanh - The Tanh activation function.
+
+#FCLayer
+Fully Connected layer. Calculates the forward pass or the backward pass.
+
+#ConvLayer
+Concolution layer. Calculates the forward or the backward pass.
+
+#OutputLayer
+The output layer. It contains one node per class. There are 2 possible loss functions:
+* square_loss - Let f be the value in a node corresponding to a false class and r be the value corresponding to the correct class. First we apply a ReLU to the value f-(r-1), so max(f-(r-1), 0), then we sum the square of these values, so it is the sum of (max(f-(r-1),0))^2 over each f.
+* softmax_ce - The Softmax followed by the Cross Entropy function.
